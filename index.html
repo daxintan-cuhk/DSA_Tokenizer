@@ -122,12 +122,13 @@
         </div>
     </div>
 
-    <!-- 第三小节：Disentanglement Probing 图片（路径改为 figures/） -->
+    <!-- 第三小节：Disentanglement Probing 图片（尺寸改为 50% + 路径为 figures/） -->
     <div class="content">
         <h2>3. Disentanglement Probing Results</h2>
         <p>Disentanglement probing result</p>
         <div class="img-box">
-            <img src="figures/disentanglement_plot.png" alt="Disentanglement Probing Results">
+            <!-- 核心修改：添加 style 属性控制尺寸 -->
+            <img src="figures/disentanglement_plot.png" alt="Disentanglement Probing Results" style="max-width: 50%; height: auto;">
             <div class="caption">Figure 1: Disentanglement probing results. DSA-Tokenizer outperforms baselines in both semantic-acoustic disentanglement, where the semantic token has low WER and low speaker similarity, while the acoustic token carries high WER and high speaker similarity. </div>
         </div>
     </div>
