@@ -4,16 +4,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DSA-Tokenizer: Disentangled Semantic-Acoustic Tokenization</title>
-    <!-- 引用独立CSS文件（复刻wavtokenizer风格+绿色元素） -->
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
-    <!-- 标题区域（居中+浅绿色下划线，贴合原版风格） -->
     <header>
         <h1>DSA-Tokenizer: Disentangled Semantic-Acoustic Tokenization via Flow Matching-based Hierarchical Fusion</h1>
     </header>
 
-    <!-- 摘要区域（白色卡片，核心内容） -->
     <div class="content">
         <h2>Abstract</h2>
         <p>
@@ -27,11 +24,10 @@
         </p>
     </div>
 
-    <!-- 第一小节：Reconstruction 音频表格 -->
+    <!-- 第一小节：Reconstruction 音频表格（英中顺序+WavTokenizer英文空缺） -->
     <div class="content">
         <h2>1. Reconstruction</h2>
         <p>Speech reconstruction results of different tokenizers (higher fidelity indicates better performance):</p>
-        <!-- 音频表格：适配移动端，溢出可横向滚动 -->
         <div class="audio-table-wrapper">
             <table class="audio-table">
                 <thead>
@@ -48,40 +44,55 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 音频行1（示例：Sample 1） -->
+                    <!-- 英文样本（Sample 1）：WavTokenizer标注缺失 -->
                     <tr>
-                        <td>Sample 1</td>
-                        <td><audio controls preload="none"><source src="audio/recon/gt_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/wavtok_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/mimi_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/encodec_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/dualcodec_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/speechtok_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/sac_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/dsa_1.wav" type="audio/wav"></audio></td>
+                        <td>English Sample 1</td>
+                        <!-- Groundtruth: 英文semantic音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676.wav" type="audio/wav"></audio></td>
+                        <!-- WavTokenizer: 英文缺失，仅标注文字 -->
+                        <td><span style="color:#666; font-style:italic;">Audio unavailable</span></td>
+                        <!-- Mimi: 英文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- Encodec: 英文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/Enocdec/Encodec_24hz_1_5kbps/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- DualCodec: 英文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/dualcodec/dualcodec_12hz_16384_4096_num_layer_6/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- SpeechTokenizer: 英文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/SpeechTokenizer/speechtokenizer_hubert_avg_num_layer_2/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- SAC: 英文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/SAC/sac_16k_62_5/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- DSA: 英文占位（替换为实际路径） -->
+                        <td><audio controls preload="none"><source src="audios/DSA/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_reconstruction.wav" type="audio/wav"></audio></td>
                     </tr>
-                    <!-- 音频行2（示例：Sample 2，可按需增加） -->
+                    <!-- 中文样本（Sample 2）：WavTokenizer保留路径 -->
                     <tr>
-                        <td>Sample 2</td>
-                        <td><audio controls preload="none"><source src="audio/recon/gt_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/wavtok_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/mimi_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/encodec_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/dualcodec_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/speechtok_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/sac_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recon/dsa_2.wav" type="audio/wav"></audio></td>
+                        <td>Chinese Sample 2</td>
+                        <!-- Groundtruth: 中文semantic音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_zh/semantic_00000309-00000009.wav" type="audio/wav"></audio></td>
+                        <!-- WavTokenizer: 中文reconstructed音频 -->
+                        <td><audio controls preload="none"><source src="audios/wavtokenizer/wavtokenizer_75hz/seedtts_eval_zh/00000309-00000009_reconstructed.wav" type="audio/wav"></audio></td>
+                        <!-- Mimi: 中文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- Encodec: 中文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/Enocdec/Encodec_24hz_1_5kbps/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- DualCodec: 中文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/dualcodec/dualcodec_12hz_16384_4096_num_layer_6/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- SpeechTokenizer: 中文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/SpeechTokenizer/speechtokenizer_hubert_avg_num_layer_2/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- SAC: 中文reconstruction音频 -->
+                        <td><audio controls preload="none"><source src="audios/SAC/sac_16k_62_5/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_reconstruction.wav" type="audio/wav"></audio></td>
+                        <!-- DSA: 中文占位（替换为实际路径） -->
+                        <td><audio controls preload="none"><source src="audios/DSA/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_reconstruction.wav" type="audio/wav"></audio></td>
                     </tr>
                 </tbody>
             </table>
         </div>
     </div>
 
-    <!-- 第二小节：Recombination 音频表格 -->
+    <!-- 第二小节：Recombination 音频表格（英中顺序+WavTokenizer英文空缺） -->
     <div class="content">
         <h2>2. Recombination</h2>
         <p>Speech recombination results (flexible semantic-acoustic fusion):</p>
-        <!-- 音频表格：适配移动端 -->
         <div class="audio-table-wrapper">
             <table class="audio-table">
                 <thead>
@@ -98,29 +109,45 @@
                     </tr>
                 </thead>
                 <tbody>
-                    <!-- 音频行1（示例：Sample 1） -->
+                    <!-- 英文样本（Sample 1）：无WavTokenizer列，无需处理 -->
                     <tr>
-                        <td>Sample 1</td>
-                        <td><audio controls preload="none"><source src="audio/recom/sem_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/acou_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/mimi_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/encodec_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/dualcodec_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/speechtok_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/sac_1.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/dsa_1.wav" type="audio/wav"></audio></td>
+                        <td>English Sample 1</td>
+                        <!-- Semantic Source: 英文semantic音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676.wav" type="audio/wav"></audio></td>
+                        <!-- Acoustic Source: 英文acoustic音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_en/acoustic_common_voice_en_10119832.wav" type="audio/wav"></audio></td>
+                        <!-- Mimi: 英文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- Encodec: 英文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/Enocdec/Encodec_24hz_1_5kbps/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- DualCodec: 英文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/dualcodec/dualcodec_12hz_16384_4096_num_layer_6/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- SpeechTokenizer: 英文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/SpeechTokenizer/speechtokenizer_hubert_avg_num_layer_2/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- SAC: 英文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/SAC/sac_16k_62_5/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- DSA: 英文占位（替换为实际路径） -->
+                        <td><audio controls preload="none"><source src="audios/DSA/seedtts_eval_en/semantic_common_voice_en_103675-common_voice_en_103676_acoustic_common_voice_en_10119832_recombination.wav" type="audio/wav"></audio></td>
                     </tr>
-                    <!-- 音频行2（示例：Sample 2，可按需增加） -->
+                    <!-- 中文样本（Sample 2）：无WavTokenizer列，无需处理 -->
                     <tr>
-                        <td>Sample 2</td>
-                        <td><audio controls preload="none"><source src="audio/recom/sem_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/acou_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/mimi_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/encodec_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/dualcodec_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/speechtok_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/sac_2.wav" type="audio/wav"></audio></td>
-                        <td><audio controls preload="none"><source src="audio/recom/dsa_2.wav" type="audio/wav"></audio></td>
+                        <td>Chinese Sample 2</td>
+                        <!-- Semantic Source: 中文semantic音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_zh/semantic_00000309-00000009.wav" type="audio/wav"></audio></td>
+                        <!-- Acoustic Source: 中文acoustic音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_zh/acoustic_00020065-00000041.wav" type="audio/wav"></audio></td>
+                        <!-- Mimi: 中文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/Mimi/Mimi/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- Encodec: 中文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/Enocdec/Encodec_24hz_1_5kbps/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- DualCodec: 中文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/dualcodec/dualcodec_12hz_16384_4096_num_layer_6/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- SpeechTokenizer: 中文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/SpeechTokenizer/speechtokenizer_hubert_avg_num_layer_2/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- SAC: 中文recombination音频 -->
+                        <td><audio controls preload="none"><source src="audios/SAC/sac_16k_62_5/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_recombination.wav" type="audio/wav"></audio></td>
+                        <!-- DSA: 中文占位（替换为实际路径） -->
+                        <td><audio controls preload="none"><source src="audios/DSA/seedtts_eval_zh/semantic_00000309-00000009_acoustic_00020065-00000041_recombination.wav" type="audio/wav"></audio></td>
                     </tr>
                 </tbody>
             </table>
@@ -131,9 +158,8 @@
     <div class="content">
         <h2>3. Disentanglement Probing Results</h2>
         <p>Disentanglement probing result</p>
-        <!-- 图片区域：居中+自适应+浅绿色边框 -->
         <div class="img-box">
-            <img src="figures/disentanglement_plot.png" alt="Disentanglement Probing Results" loading="lazy">
+            <img src="images/disentanglement_plot.png" alt="Disentanglement Probing Results">
             <div class="caption">Figure 1: Disentanglement probing results. DSA-Tokenizer outperforms baselines in both semantic-acoustic disentanglement, where the semantic token has low WER and low speaker similarity, while the acoustic token carries high WER and high speaker similarity. </div>
         </div>
     </div>
