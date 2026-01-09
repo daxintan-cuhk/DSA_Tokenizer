@@ -205,7 +205,7 @@
             </div>
         </div>
 
-        <!-- 1. Reconstruction 音频表格 -->
+        <!-- 2.1. Reconstruction 音频表格 -->
         <div class="content">
             <h2>Reconstruction and Recombination Audios</h2>
             <h2>1. Reconstruction</h2>
@@ -232,7 +232,7 @@
             </div>
         </div>
 
-        <!-- 2. Recombination 音频表格 -->
+        <!-- 2.2. Recombination 音频表格 -->
         <div class="content">
             <h2>2. Recombination</h2>
             <p>Speech recombination results (flexible semantic-acoustic fusion):</p>
@@ -257,6 +257,29 @@
                 </table>
             </div>
         </div>
+		
+		<!-- 2.3. LLM-VC音频表格 -->
+		<div class="content">
+			<h2>3. LLM-VC</h2>
+			<p>LLM-VC (LLM-based Voice Conversion) results (high-quality voice style transfer with semantic preservation):</p>
+			<div class="audio-table-wrapper">
+				<table class="audio-table" id="llmvcTable">
+					<thead>
+						<tr>
+                            <th>Sample</th>
+                            <th>Semantic Source</th>
+                            <th>Acoustic Source</th>
+							<th>WavTokenizer</th>
+							<th>SAC</th>
+							<th>DSA (ours)</th>
+						</tr>
+					</thead>
+					<tbody id="llmvcTableBody">
+						<!-- 由JavaScript动态填充 -->
+					</tbody>
+				</table>
+			</div>
+		</div>
 
         <!-- 3. Disentanglement Probing 图片 -->
         <div class="content">
@@ -367,6 +390,26 @@
                     dsa: "audios/DSA/seedtts_eval_zh/semantic_10002309-00000033_acoustic_10002298-00000001_recombination.wav"
                 }
             ];
+			
+			// 3. LLM-VC样本数据（新增，格式和Reconstruction/Recombination一致）
+			const llmvcSamples = [
+				{
+					name: "Sample 1",
+					semanticSource: "audios/LLM_VC/DSA/1089_134686_000024_000004.wav",
+					acousticSource: "audios/LLM_VC/DSA/5683_32866_000047_000009.wav",
+					wavtokenizer: "audios/LLM_VC/wavtokenizer/effective_global_id_58.wav",
+					sac: "audios/LLM_VC/SAC/effective_global_id_58.wav",
+					dsa: "audios/LLM_VC/DSA/effective_global_id_58.wav"
+				},
+				{
+					name: "Sample 2",
+					semanticSource: "audios/LLM_VC/DSA/1188_133604_000012_000002.wav",
+					acousticSource: "audios/LLM_VC/DSA/7729_102255_000016_000008.wav",
+					wavtokenizer: "audios/LLM_VC/wavtokenizer/effective_global_id_194.wav",
+					sac: "audios/LLM_VC/SAC/effective_global_id_194.wav",
+					dsa: "audios/LLM_VC/DSA/effective_global_id_194.wav"
+				}
+			];
 
             // ===================== 工具函数 =====================
             function createAudioTag(audioPath) {
@@ -418,11 +461,31 @@
                     tableBody.appendChild(row);
                 });
             }
+			
+			// 新增：渲染LLM-VC表格
+			function renderLlmvcTable() {
+				const tableBody = document.getElementById('llmvcTableBody');
+				tableBody.innerHTML = '';
+				
+				llmvcSamples.forEach(sample => {
+					const row = document.createElement('tr');
+					row.innerHTML = `
+						<td>${sample.name}</td>
+						<td>${createAudioTag(sample.semanticSource)}</td>
+						<td>${createAudioTag(sample.acousticSource)}</td>
+						<td>${createAudioTag(sample.wavtokenizer)}</td>
+						<td>${createAudioTag(sample.sac)}</td>
+						<td>${createAudioTag(sample.dsa)}</td>
+					`;
+					tableBody.appendChild(row);
+				});
+			}
 
             // 页面加载完成后渲染表格
             window.onload = function() {
                 renderReconstructionTable();
                 renderRecombinationTable();
+				renderLlmvcTable();
             };
         </script>
     </div>
