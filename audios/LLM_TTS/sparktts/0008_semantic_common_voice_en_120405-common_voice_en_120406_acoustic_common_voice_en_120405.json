@@ -1,0 +1,6 @@
+{
+  "Acoustic text": "He approached the mass and was surprised at the size and the shape.",
+  "Semantic text": "The only shadow was that of the few scattered pine trees.",
+  "prompt_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/en/prompt-wavs/common_voice_en_120405.wav",
+  "target_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/en/wavs/common_voice_en_120405-common_voice_en_120406.wav"
+}

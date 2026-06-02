@@ -1,0 +1,6 @@
+{
+  "Acoustic text": "He was more certain of it than of anything in the world.",
+  "Semantic text": "And he hadn't perceived them because he had become accustomed to them.",
+  "prompt_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/en/prompt-wavs/common_voice_en_648428.wav",
+  "target_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/en/wavs/common_voice_en_648428-common_voice_en_648427.wav"
+}

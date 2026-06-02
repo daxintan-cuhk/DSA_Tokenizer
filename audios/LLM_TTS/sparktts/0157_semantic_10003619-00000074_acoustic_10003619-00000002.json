@@ -1,0 +1,6 @@
+{
+  "Acoustic text": "乘车系好安全带，将你安全带向爱。",
+  "Semantic text": "他们第一时间，就把六七楼的客人救下去了。",
+  "prompt_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/zh/prompt-wavs/10003619-00000002.wav",
+  "target_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/zh/wavs/10003619-00000074.wav"
+}

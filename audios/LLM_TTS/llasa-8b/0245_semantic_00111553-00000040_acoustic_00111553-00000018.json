@@ -1,0 +1,6 @@
+{
+  "Acoustic text": "打造更贴心，更细致的个性化服务。",
+  "Semantic text": "自动驾驶将为现有的司机运力提供补充。",
+  "prompt_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/zh/prompt-wavs/00111553-00000018.wav",
+  "target_wav_path": "/home/ma-user/work/speech_dataset/seedtts/seedtts_testset/zh/wavs/00111553-00000040.wav"
+}

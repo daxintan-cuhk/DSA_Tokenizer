@@ -94,6 +94,22 @@
             font-size: 14px;
         }
 
+        .audio-table .sample-id {
+            font-weight: 600;
+            white-space: nowrap;
+        }
+
+        .audio-table .text-cell {
+            min-width: 260px;
+            max-width: 360px;
+            text-align: left;
+            line-height: 1.45;
+        }
+
+        .llm-tts-table {
+            min-width: 1420px;
+        }
+
         .audio-table tr:nth-child(even) {
             background-color: #f9f9f9;
         }
@@ -128,6 +144,15 @@
             transition: transform 0.3s ease;
         }
 
+        .img-box .pdf-figure {
+            width: 80%;
+            height: 640px;
+            border: 0;
+            border-radius: 4px;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+            background-color: #fff;
+        }
+
         .img-box img:hover {
             transform: scale(1.02);
         }
@@ -158,6 +183,11 @@
                 max-width: 100%;
             }
 
+            .img-box .pdf-figure {
+                width: 100%;
+                height: 420px;
+            }
+
             .caption {
                 max-width: 100%;
                 font-size: 13px;
@@ -178,13 +208,19 @@
         <div class="content">
             <h2>Abstract</h2>
             <p>
-                Speech tokenizers serve as the cornerstone of discrete Speech Large Language Models (Speech LLMs). 
-                Existing tokenizers either prioritize semantic encoding, fuse semantic content with acoustic style inseparably, or achieve incomplete semantic-acoustic disentanglement. 
-                To achieve better disentanglement, we propose <strong>DSA-Tokenizer</strong>, which explicitly disentangles speech into discrete semantic and acoustic tokens via distinct optimization constraints. 
-                Specifically, semantic tokens are supervised by ASR to capture linguistic content, while acoustic tokens focus on mel-spectrograms restoration to encode style. 
-                To eliminate rigid length constraints between the two sequences, we introduce a hierarchical <strong>Flow-Matching</strong> decoder that further improves speech generation quality.
-                Furthermore, we employ a joint reconstruction-recombination training strategy to enforce this separation. DSA-Tokenizer enables high fidelity reconstruction and flexible recombination through robust disentanglement, facilitating controllable generation in speech LLMs.
-                Our analysis highlights disentangled tokenization as a pivotal paradigm for future speech modeling.
+                Speech tokenizers are a key building block of fully discrete Speech LLMs. 
+                Existing tokenizers either prioritize semantic encoding, fuse semantic content with acoustic style inseparably, or achieve incomplete semantic-acoustic disentanglement.
+                To achieve better disentanglement, we propose \textbf{DSA-Tokenizer}, 
+                which explicitly disentangles speech into discrete semantic and acoustic tokens via distinct optimization constraints. 
+                Specifically, semantic tokens are supervised by ASR to capture linguistic content, 
+                while acoustic tokens focus on mel-spectrograms restoration to encode style. 
+                We further introduce a hierarchical Flow Matching decoder and a joint reconstruction-context inpainting training strategy, 
+                allowing the model to support both high-fidelity reconstruction and cross-utterance voice clone. 
+                To speed up inference, we distill the DiT decoder to reduce sampling steps of inference to 4 and improve synthesis quality with GAN fine-tuning. 
+                Experiments demonstrate that DSA-Tokenizer provides strong semantic-acoustic disentanglement, 
+                reliable controllable voice cloning, 
+                and efficient high-fidelity generation with low WER/CER. 
+                Moreover, our results suggest that disentangled tokenization provides a more effective interface for downstream large-model speech generation.
             </p>
         </div>
 
@@ -195,7 +231,9 @@
                 Overview of the proposed framework and training strategy. 
             </p>
             <div class="img-box">
-                <img src="figures/method.png" alt="Overview of the framework">
+                <object class="pdf-figure" data="figures/method.pdf" type="application/pdf" aria-label="Overview of the framework">
+                    <a href="figures/method.pdf">Open overview of the framework PDF</a>
+                </object>
                 <div class="caption">
                     Overview of the proposed framework and training strategy. 
                     (a) DSA-Tokenizer framework: Input audio $X$ is encoded into discrete semantic and acoustic tokens, which are fed into the DiT decoder for audio generation. 
@@ -207,7 +245,7 @@
 
         <!-- 2.1. Reconstruction 音频表格 -->
         <div class="content">
-            <h2>Reconstruction and Recombination Audios</h2>
+            <h2>Reconstruction and Voice Cloning(RecombinationAudios</h2>
             <h2>1. Reconstruction</h2>
             <p>Speech reconstruction results of different tokenizers (higher fidelity indicates better performance):</p>
             <div class="audio-table-wrapper">
@@ -232,10 +270,10 @@
             </div>
         </div>
 
-        <!-- 2.2. Recombination 音频表格 -->
+        <!-- 2.2. Voice Cloning 音频表格 -->
         <div class="content">
-            <h2>2. Recombination</h2>
-            <p>Speech recombination results (flexible semantic-acoustic fusion):</p>
+            <h2>2. Voice Cloning</h2>
+            <p>Speech voice cloning results (flexible semantic-acoustic fusion):</p>
             <div class="audio-table-wrapper">
                 <table class="audio-table" id="recombinationTable">
                     <thead>
@@ -281,12 +319,39 @@
 			</div>
 		</div>
 
+		<!-- 2.4. LLM-TTS音频表格 -->
+		<div class="content">
+			<h2>LLM-TTS</h2>
+			<p>LLM-TTS results:</p>
+			<div class="audio-table-wrapper">
+				<table class="audio-table llm-tts-table" id="llmttsTable">
+					<thead>
+						<tr>
+							<th>sample</th>
+							<th>text</th>
+							<th>prompt</th>
+							<th>llasa-1b</th>
+							<th>llasa-3b</th>
+							<th>llasa-8b</th>
+							<th>sparktts</th>
+							<th>DSA</th>
+						</tr>
+					</thead>
+					<tbody id="llmttsTableBody">
+						<!-- 由JavaScript动态填充 -->
+					</tbody>
+				</table>
+			</div>
+		</div>
+
         <!-- 3. Disentanglement Probing 图片 -->
         <div class="content">
             <h2>Disentanglement Probing Results</h2>
             <p>Disentanglement probing results demonstrate the superiority of DSA-Tokenizer in semantic-acoustic disentanglement:</p>
             <div class="img-box">
-                <img src="figures/disentanglement_plot.png" alt="Disentanglement Probing Results">
+                <object class="pdf-figure" data="figures/disentanglement_plot_large_font.pdf" type="application/pdf" aria-label="Disentanglement Probing Results">
+                    <a href="figures/disentanglement_plot_large_font.pdf">Open disentanglement probing results PDF</a>
+                </object>
                 <div class="caption">
                     Disentanglement probing results. DSA-Tokenizer outperforms baselines in both semantic-acoustic disentanglement, where the semantic token has low WER and low speaker similarity, while the acoustic token carries high WER and high speaker similarity.
                 </div>
@@ -411,12 +476,65 @@
 				}
 			];
 
+			// 4. LLM-TTS样本数据
+			const llmttsSamples = [
+				{
+					id: "English Sample 1",
+					text: "The only shadow was that of the few scattered pine trees.",
+					prompt: "audios/LLM_TTS/llasa-8b/acoustic_common_voice_en_120405.wav",
+					llasa1b: "audios/LLM_TTS/llasa-1b/0008_semantic_common_voice_en_120405-common_voice_en_120406_acoustic_common_voice_en_120405_recombination.wav",
+					llasa3b: "audios/LLM_TTS/llasa-3b/0008_semantic_common_voice_en_120405-common_voice_en_120406_acoustic_common_voice_en_120405_recombination.wav",
+					llasa8b: "audios/LLM_TTS/llasa-8b/0008_semantic_common_voice_en_120405-common_voice_en_120406_acoustic_common_voice_en_120405_recombination.wav",
+					sparktts: "audios/LLM_TTS/sparktts/0008_semantic_common_voice_en_120405-common_voice_en_120406_acoustic_common_voice_en_120405_recombination.wav",
+					dsa: "audios/LLM_TTS/DSA/0008_semantic_common_voice_en_120405-common_voice_en_120406_acoustic_common_voice_en_120405_recombination.wav"
+				},
+				{
+					id: "English Sample 2",
+					text: "And he hadn't perceived them because he had become accustomed to them.",
+					prompt: "audios/LLM_TTS/llasa-8b/acoustic_common_voice_en_648428.wav",
+					llasa1b: "audios/LLM_TTS/llasa-1b/1045_semantic_common_voice_en_648428-common_voice_en_648427_acoustic_common_voice_en_648428_recombination.wav",
+					llasa3b: "audios/LLM_TTS/llasa-3b/1045_semantic_common_voice_en_648428-common_voice_en_648427_acoustic_common_voice_en_648428_recombination.wav",
+					llasa8b: "audios/LLM_TTS/llasa-8b/1045_semantic_common_voice_en_648428-common_voice_en_648427_acoustic_common_voice_en_648428_recombination.wav",
+					sparktts: "audios/LLM_TTS/sparktts/1045_semantic_common_voice_en_648428-common_voice_en_648427_acoustic_common_voice_en_648428_recombination.wav",
+					dsa: "audios/LLM_TTS/DSA/1045_semantic_common_voice_en_648428-common_voice_en_648427_acoustic_common_voice_en_648428_recombination.wav"
+				},
+				{
+					id: "Chinese Sample 3",
+					text: "他们第一时间，就把六七楼的客人救下去了。",
+					prompt: "audios/LLM_TTS/llasa-8b/acoustic_10003619-00000002.wav",
+					llasa1b: "audios/LLM_TTS/llasa-1b/0157_semantic_10003619-00000074_acoustic_10003619-00000002_recombination.wav",
+					llasa3b: "audios/LLM_TTS/llasa-3b/0157_semantic_10003619-00000074_acoustic_10003619-00000002_recombination.wav",
+					llasa8b: "audios/LLM_TTS/llasa-8b/0157_semantic_10003619-00000074_acoustic_10003619-00000002_recombination.wav",
+					sparktts: "audios/LLM_TTS/sparktts/0157_semantic_10003619-00000074_acoustic_10003619-00000002_recombination.wav",
+					dsa: "audios/LLM_TTS/DSA/0157_semantic_10003619-00000074_acoustic_10003619-00000002_recombination.wav"
+				},
+				{
+					id: "Chinese Sample 4",
+					text: "自动驾驶将为现有的司机运力提供补充。",
+					prompt: "audios/LLM_TTS/llasa-8b/acoustic_00111553-00000018.wav",
+					llasa1b: "audios/LLM_TTS/llasa-1b/0245_semantic_00111553-00000040_acoustic_00111553-00000018_recombination.wav",
+					llasa3b: "audios/LLM_TTS/llasa-3b/0245_semantic_00111553-00000040_acoustic_00111553-00000018_recombination.wav",
+					llasa8b: "audios/LLM_TTS/llasa-8b/0245_semantic_00111553-00000040_acoustic_00111553-00000018_recombination.wav",
+					sparktts: "audios/LLM_TTS/sparktts/0245_semantic_00111553-00000040_acoustic_00111553-00000018_recombination.wav",
+					dsa: "audios/LLM_TTS/DSA/0245_semantic_00111553-00000040_acoustic_00111553-00000018_recombination.wav"
+				}
+			];
+
             // ===================== 工具函数 =====================
+            function escapeHtml(value) {
+                return String(value)
+                    .replace(/&/g, '&amp;')
+                    .replace(/</g, '&lt;')
+                    .replace(/>/g, '&gt;')
+                    .replace(/"/g, '&quot;')
+                    .replace(/'/g, '&#039;');
+            }
+
             function createAudioTag(audioPath) {
                 if (!audioPath) {
                     return '<span style="color:#666; font-style:italic;">Audio unavailable</span>';
                 }
-                return `<audio controls preload="none"><source src="${audioPath}" type="audio/wav"></audio>`;
+                return `<audio controls preload="none"><source src="${escapeHtml(audioPath)}" type="audio/wav"></audio>`;
             }
 
             // ===================== 渲染表格 =====================
@@ -481,11 +599,32 @@
 				});
 			}
 
+			function renderLlmttsTable() {
+				const tableBody = document.getElementById('llmttsTableBody');
+				tableBody.innerHTML = '';
+
+				llmttsSamples.forEach(sample => {
+					const row = document.createElement('tr');
+					row.innerHTML = `
+						<td class="sample-id">${escapeHtml(sample.id)}</td>
+						<td class="text-cell">${escapeHtml(sample.text)}</td>
+						<td>${createAudioTag(sample.prompt)}</td>
+						<td>${createAudioTag(sample.llasa1b)}</td>
+						<td>${createAudioTag(sample.llasa3b)}</td>
+						<td>${createAudioTag(sample.llasa8b)}</td>
+						<td>${createAudioTag(sample.sparktts)}</td>
+						<td>${createAudioTag(sample.dsa)}</td>
+					`;
+					tableBody.appendChild(row);
+				});
+			}
+
             // 页面加载完成后渲染表格
             window.onload = function() {
                 renderReconstructionTable();
                 renderRecombinationTable();
 				renderLlmvcTable();
+				renderLlmttsTable();
             };
         </script>
     </div>
