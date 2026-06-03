@@ -144,15 +144,6 @@
             transition: transform 0.3s ease;
         }
 
-        .img-box .pdf-figure {
-            width: 80%;
-            height: 640px;
-            border: 0;
-            border-radius: 4px;
-            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-            background-color: #fff;
-        }
-
         .img-box img:hover {
             transform: scale(1.02);
         }
@@ -181,11 +172,6 @@
 
             .img-box img {
                 max-width: 100%;
-            }
-
-            .img-box .pdf-figure {
-                width: 100%;
-                height: 420px;
             }
 
             .caption {
@@ -231,9 +217,7 @@
                 Overview of the proposed framework and training strategy. 
             </p>
             <div class="img-box">
-                <object class="pdf-figure" data="figures/method.pdf" type="application/pdf" aria-label="Overview of the framework">
-                    <a href="figures/method.pdf">Open overview of the framework PDF</a>
-                </object>
+                <img src="figures/method.png" alt="Overview of the framework">
                 <div class="caption">
                     Overview of the proposed framework and training strategy. 
                     (a) DSA-Tokenizer framework: Input audio $X$ is encoded into discrete semantic and acoustic tokens, which are fed into the DiT decoder for audio generation. 
@@ -349,9 +333,7 @@
             <h2>Disentanglement Probing Results</h2>
             <p>Disentanglement probing results demonstrate the superiority of DSA-Tokenizer in semantic-acoustic disentanglement:</p>
             <div class="img-box">
-                <object class="pdf-figure" data="figures/disentanglement_plot_large_font.pdf" type="application/pdf" aria-label="Disentanglement Probing Results">
-                    <a href="figures/disentanglement_plot_large_font.pdf">Open disentanglement probing results PDF</a>
-                </object>
+                <img src="figures/disentanglement_plot_large_font.png" alt="Disentanglement Probing Results">
                 <div class="caption">
                     Disentanglement probing results. DSA-Tokenizer outperforms baselines in both semantic-acoustic disentanglement, where the semantic token has low WER and low speaker similarity, while the acoustic token carries high WER and high speaker similarity.
                 </div>
